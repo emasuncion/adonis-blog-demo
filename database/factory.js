@@ -32,3 +32,15 @@ Factory.blueprint('App/Models/Post', (faker) => {
     }
   }
 })
+
+Factory.blueprint('App/Models/Comment', (faker) => {
+  return {
+    content: faker.sentence(),
+    user_id: async () => {
+      return (await Factory.model('App/Models/User').create()).id
+    },
+    post_id: async () => {
+      return (await Factory.model('App/Models/Post').create()).id
+    }
+  }
+})

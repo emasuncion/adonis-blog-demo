@@ -1,0 +1,44 @@
+@layout('layout.app')
+
+@section('content')
+  @set('title', post.title)
+  <a href="/">
+    <h4>Home</h4>
+  </a>
+  <div class="card mt-3">
+
+    <div class="card-body">
+      <h4 class="card-title">{{ post.title }}</h4>
+      <p class="card-text">
+        {{{ post.body }}}
+      </p>
+    </div>
+
+    <hr>
+    <div class="card-body">
+    <h4 class="card-title">Comments:</h4>
+    @each(comment in comments)
+      <p class="card-text">
+        {{ comment.created_at }}  {{ comment.content }}
+      </p>
+    @endeach
+    </div>
+
+    <hr>
+
+    <div class="card-body">
+    <h4 class="card-title">Add a comment: </h4>
+    <form method="POST" action="/posts/{{ post.id }}/comments">
+      {{ csrfField() }}
+      <div class="form-group">
+        <textarea name="content" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+@endsection

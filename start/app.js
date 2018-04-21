@@ -23,6 +23,9 @@ const providers = [
   '@adonisjs/vow-browser/providers/VowBrowserProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
   'adonis-bundler/providers/BundlerProvider',
+  '@adonisjs/vow/providers/VowProvider',
+  '@adonisjs/vow-browser/providers/VowBrowserProvider',
+  '@adonisjs/antl/providers/AntlProvider',
 ]
 
 /*
@@ -62,4 +65,28 @@ const aliases = {}
 */
 const commands = []
 
-module.exports = { providers, aceProviders, aliases, commands }
+const locales = {
+  /*
+  |--------------------------------------------------------------------------
+  | Loader
+  |--------------------------------------------------------------------------
+  |
+  | The loader to be used for loading locale strings. The inbuilt loaders
+  | are `file` and `database`.
+  |
+  */
+  loader: 'file',
+
+  /*
+  |--------------------------------------------------------------------------
+  | Locale
+  |--------------------------------------------------------------------------
+  |
+  | The default locale to be used when unable to detect the user locale.
+  | Or if user locale is not supported.
+  |
+  */
+  locale: 'en'
+  }
+
+module.exports = { providers, aceProviders, aliases, commands, locales }

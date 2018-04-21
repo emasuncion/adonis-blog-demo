@@ -1,6 +1,7 @@
 'use strict'
 
 const Post = use('App/Models/Post')
+const Comment = use('App/Models/Comment')
 const { validateAll } = use('Validator')
 
 class PostController {
@@ -21,6 +22,16 @@ class PostController {
     return view.render('posts.index', { posts: posts.toJSON() })
   }
 
+  async showPost ({ view, params }) {
+    const post = await Post.findOrFail(params.id)
+    const comments = await Comment.query().where('post_id', params.id).fetch()
+
+    return view.render('posts.showPost', {
+        post: post.toJSON(),
+        comments: comments.toJSON()
+    })
+  }
+
   create ({ view }) {
     /**
      * Render the view 'posts.create'.
@@ -30,13 +41,14 @@ class PostController {
     return view.render('posts.create')
   }
 
-  async store ({ session, request, response }) {
+  async store ({ session, request, response, auth }) {
     /**
      * Getting needed parameters.
      *
      * ref: http://adonisjs.com/docs/4.1/request#_only
      */
     const data = request.only(['title', 'body'])
+    data.user_id = auth.user.id
 
     /**
      * Validating our data.
@@ -44,8 +56,8 @@ class PostController {
      * ref: http://adonisjs.com/docs/4.1/validator
      */
     const validation = await validateAll(data, {
-      title: 'required',
-      body: 'required',
+      title: 'required|max:50',
+      body: 'required|max:500',
     })
 
     /**
@@ -94,8 +106,8 @@ class PostController {
      * ref: http://adonisjs.com/docs/4.1/validator
      */
     const validation = await validateAll(data, {
-      title: 'required',
-      body: 'required',
+      title: 'required|max:50',
+      body: 'required|max:500',
     })
 
     /**

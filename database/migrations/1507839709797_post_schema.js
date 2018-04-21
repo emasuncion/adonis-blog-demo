@@ -9,7 +9,10 @@ class PostSchema extends Schema {
       table.timestamps()
       table.string('title')
       table.text('body')
-      table.integer('user_id').unsigned()
+      table.integer('user_id').unsigned().notNullable()
+      table.foreign('user_id')
+      .references('id').inTable('users')
+      .onUpdate('CASCADE').onDelete('CASCADE')
     })
   }
 

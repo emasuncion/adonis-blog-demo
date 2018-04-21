@@ -37,4 +37,12 @@ Route.group(() => {
   Route.get('posts/:id/edit', 'PostController.edit')
   Route.get('posts/:id/delete', 'PostController.delete')
   Route.put('posts/:id', 'PostController.update')
+
+  Route.get('posts/:id/show', 'PostController.showPost')
+
+  // Route.get('posts/:id/show', async ({ view, params }) => {
+  //   return params
+  // })
+
+  Route.post('posts/:id/comments', 'CommentController.store')
 }).middleware(['auth'])
