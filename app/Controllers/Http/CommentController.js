@@ -11,7 +11,7 @@ class CommentController {
 
 
     const validation = await validateAll(data, {
-      content: 'max:500'
+      content: 'required|max:500'
     })
 
     if (validation.fails()) {

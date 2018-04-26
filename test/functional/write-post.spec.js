@@ -32,7 +32,7 @@ test('we can write a post', async ({ browser }) => {
 
   // and to see the title of our post
   await page.assertHas(post.title)
-})
+}).timeout(0)
 
 test('a post should have a title', async ({ browser }) => {
   // Given we have a user
@@ -60,7 +60,7 @@ test('a post should have a title', async ({ browser }) => {
 
   // And we expect to see a form error
   await page.assertExists('small.form-text')
-})
+}).timeout(0)
 
 test('a post should have a body', async ({ browser }) => {
   // Given we have a user
