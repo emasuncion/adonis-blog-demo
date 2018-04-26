@@ -19,7 +19,7 @@
     <h4 class="card-title">Comments:</h4>
     @each(comment in comments)
       <p class="card-text">
-        {{ comment.created_at }}  {{ comment.content }}
+        <span style="color: #a7a7ac;"><i>{{ comment.created_at }} by {{ comment.author.username }}</i></span> :  {{ comment.content }}
       </p>
     @endeach
     </div>

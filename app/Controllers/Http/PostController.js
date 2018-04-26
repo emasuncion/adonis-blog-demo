@@ -24,7 +24,7 @@ class PostController {
 
   async showPost ({ view, params }) {
     const post = await Post.findOrFail(params.id)
-    const comments = await Comment.query().where('post_id', params.id).fetch()
+    const comments = await Comment.query().with('author').where('post_id', params.id).fetch()
 
     return view.render('posts.showPost', {
         post: post.toJSON(),

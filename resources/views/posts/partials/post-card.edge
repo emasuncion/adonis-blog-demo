@@ -24,9 +24,13 @@
   @endloggedIn
 
   <div class="card-body">
+    @loggedIn
     <a href="/posts/{{ post.id }}/show">
+    @endloggedIn
       <h4 class="card-title">{{ post.title }}</h4>
+    @loggedIn
     </a>
+    @endloggedIn
     <p class="card-text">
       {{{ post.body }}}
     </p>
