@@ -14,7 +14,6 @@ This repo contains an example application of the Adonis Framework. You must chec
 2. Blogging System
 3. API Testing
 4. Browser Testing
-5. Assets management
 
 ## What's the roadmap?
 
